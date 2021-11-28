@@ -42,7 +42,8 @@ public class VehicleManager {
                 int loadSpace = sc.nextInt();
 
                 if (type.equalsIgnoreCase("Van") ||
-                        type.equalsIgnoreCase("Truck")) {
+                        type.equalsIgnoreCase("Truck") || type.equalsIgnoreCase("Car")) {
+
                     // construct a Van object and add it to the passenger list
                     vehicleList.add(new Van(id, type, make, model, milesPerKwH,
                             registration, costPerMile,
@@ -50,6 +51,7 @@ public class VehicleManager {
                             mileage, latitude, longitude,
                             loadSpace));
                 }
+
             }
             sc.close();
 
@@ -58,6 +60,29 @@ public class VehicleManager {
         }
     }
 
-    //TODO add more functionality as per spec.
 
+    //TODO add more functionality as per spec.
+    public Vehicle findVehicleByRegistrationNumber(String registration) {
+        for (Vehicle v : vehicleList) {
+            if (v.getRegistration().equalsIgnoreCase(registration)) {
+                return v;
+            }
+        }
+        return null;
+    }
+
+    public void DisplayCarVanOrTruck(String type,ArrayList<Vehicle> list) {
+
+        for(Vehicle v: vehicleList )
+        {
+            if(v.getType().equalsIgnoreCase(type))
+            {
+                list.add(v);
+            }
+        }
+
+    }
 }
+
+
+
