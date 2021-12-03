@@ -40,7 +40,7 @@ public class App {
 
         // create VehicleManager, and load all vehicles from text file
         vehicleManager = new VehicleManager("vehicles.txt");
-
+        bookingManager = new BookingManager("bookings.txt");
         try {
             displayMainMenu();        // User Interface - Menu
         } catch (IOException e) {
@@ -177,13 +177,15 @@ public class App {
                 + "1. Search By Registration\n"
                 + "2. Display all Vehicles\n"
                 + "3. Display Car, Van or Truck\n"
-                + "4. Exit\n"
-                + "Enter Option [1,4]";
+                + "4. Add vehicle\n"
+                + "5. Exit Menu\n"
+                + "Enter Option [1,5]";
 
         final int SEARCH = 1;
         final int SHOW_ALL = 2;
         final int DISPLAY_ORDER = 3;
-        final int EXIT = 4;
+        final int ADD_VEHICLE = 4;
+        final int EXIT = 5;
 
         Scanner keyboard = new Scanner(System.in);
         int option = 0;
@@ -204,9 +206,9 @@ public class App {
                         vehicleManager.displayAllVehicles();
                         break;
                     case DISPLAY_ORDER:
-                        ArrayList<Vehicle> vehicleList = new ArrayList<>();
                         VehicleRegComparator regComparator = new VehicleRegComparator();
-                        System.out.print("Enter Type Of Vehicle, Car Van Or Truck ");
+                        ArrayList<Vehicle> vehicleList = new ArrayList<>();
+                        System.out.print("Enter Type Of Vehicle, Car Van Or Truck, 4x4");
                         String type = keyboard.nextLine();
                         if (!(type.equalsIgnoreCase("car") || type.equalsIgnoreCase("4x4") || type.equalsIgnoreCase("truck") || type.equalsIgnoreCase("van"))) {
                             System.out.println("That Type " + type + "isnt Registered");
@@ -223,6 +225,8 @@ public class App {
                         }
 
                         break;
+                    case ADD_VEHICLE:
+                        break;
                     case EXIT:
                         System.out.println("Exit Menu option chosen");
                         break;
@@ -236,4 +240,39 @@ public class App {
         }
         while (option != EXIT);
     }
-}
+    private void displayBooking() {
+        final String MENU_ITEMS =
+                "\n*** Vehicle MENU ***\n"
+                        + "1. Display all bookings\n"
+                        + "2. Create a Booking\n"
+                        + "3. \n"
+                        + "4. Add vehicle\n"
+                        + "5. Exit Menu\n"
+                        + "Enter Option [1,5]";
+
+        final int DISPLAY = 1;
+        final int CREATE = 2;
+        final int DISPLAY_ORDER = 3;
+        final int ADD_VEHICLE = 4;
+        final int EXIT = 5;
+
+        Scanner keyboard = new Scanner(System.in);
+        int option = 0;
+        do {
+            System.out.println("\n" + MENU_ITEMS);
+            try {
+                String usersInput = keyboard.nextLine();
+                option = Integer.parseInt(usersInput);
+                switch (option) {
+                    case DISPLAY:
+                        System.out.println("Display ALL Passengers");
+                        passengerStore.displayAllPassengers();
+                        break;
+                    case CREATE:
+                        break;
+
+                }
+
+            }
+        }
+    }
